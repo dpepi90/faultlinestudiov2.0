@@ -23,6 +23,13 @@ export default function RootLayout({
           GeistMono.variable
         )}
       >
+        <header className="bg-[var(--panel)]">
+          <nav className="max-w-6xl mx-auto flex items-center justify-end gap-4 px-6 py-4">
+            <a href="/_check" className="text-sm hover:underline">
+              Check
+            </a>
+          </nav>
+        </header>
         {children}
       </body>
     </html>
