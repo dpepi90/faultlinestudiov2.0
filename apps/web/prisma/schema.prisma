@@ -1,0 +1,72 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id    String  @id @default(cuid())
+  email String  @unique
+  name  String?
+  role  String?
+}
+
+model Channel {
+  id          String  @id @default(cuid())
+  name        String
+  locale      String  @default("en")
+  ytChannelId String?
+  videos      Video[]
+  ideas       Idea[]
+}
+
+model Idea {
+  id        String           @id @default(cuid())
+  channel   Channel          @relation(fields: [channelId], references: [id])
+  channelId String
+  topic     String
+  angle     String?
+  whyNow    String?
+  score     Int?
+  status    String?          @default("new")
+  titles    TitleCandidate[]
+  createdAt DateTime         @default(now())
+}
+
+model TitleCandidate {
+  id        String   @id @default(cuid())
+  idea      Idea     @relation(fields: [ideaId], references: [id])
+  ideaId    String
+  title     String
+  hookType  String?
+  estLen    Int?
+  notes     String?
+  status    String?  @default("draft")
+  createdAt DateTime @default(now())
+}
+
+model Video {
+  id               String      @id @default(cuid())
+  channel          Channel     @relation(fields: [channelId], references: [id])
+  channelId        String
+  titleId          String?
+  status           String?     @default("draft")
+  slug             String?     @unique
+  publishPlannedAt DateTime?
+  publishedAt      DateTime?
+  thumbnails       Thumbnail[]
+}
+
+model Thumbnail {
+  id               String  @id @default(cuid())
+  video            Video   @relation(fields: [videoId], references: [id])
+  videoId          String
+  concept          String?
+  midjourneyPrompt String?
+  canvaBrief       String?
+  finalUrl         String?
+  abGroup          String?
+}

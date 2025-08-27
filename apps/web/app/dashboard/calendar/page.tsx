@@ -1,0 +1,1 @@
+export default function Page(){return(<section className='card'><h2 className='text-[color:#d4af37] text-xl font-bold mb-2'>Content Calendar</h2><div className='opacity-80 text-sm'>UI coming online in next waves.</div></section>)}

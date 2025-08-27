@@ -1,0 +1,30 @@
+# Node/Next
+node_modules/
+.next/
+.out/
+dist/
+build/
+.cache/
+.turbo/
+.vercel/
+
+# Env & locais
+.env
+.env.*
+!.env.example
+
+# OS/IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Tests/coverage
+coverage/
+
+# Prisma
+prisma/*.db
+prisma/*.db-journal
+
+# Supabase (ajuste se usar)
+supabase/.temp/

@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: #0b0b0c;          /* fundo quase preto */
+    --panel: #121214;       /* painéis */
+    --panel-2: #16171a;     /* painel hover */
+    --brand: #ffd23f;       /* dourado */
+    --text: #eaeef5;        /* texto primário */
+    --muted: #9aa3b2;       /* texto secundário */
+    --accent: 255 210 63;   /* hsl var reusável */
+  }
+
+  html, body, #__next {
+    height: 100%;
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  /* vidro suave */
+  .glass {
+    background: linear-gradient(
+      180deg,
+      rgba(255,255,255,0.04) 0%,
+      rgba(255,255,255,0.02) 100%
+    );
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .ring-brand {
+    box-shadow: 0 0 0 1px rgba(var(--accent) / 0.35);
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply max-w-6xl mx-auto px-6 py-8;
+  }
+  .btn {
+    @apply inline-flex items-center gap-2 rounded-xl px-4 py-2 font-medium transition;
+  }
+  .btn-brand {
+    @apply btn bg-[rgb(var(--accent))] text-black hover:brightness-95;
+  }
+  .tab {
+    @apply px-3 py-2 rounded-lg text-sm text-[color:var(--muted)] hover:bg-[var(--panel-2)] transition;
+  }
+  .tab-active {
+    @apply bg-[var(--panel-2)] text-white;
+    box-shadow: 0 1px 0 0 rgb(var(--accent));
+  }
+}
